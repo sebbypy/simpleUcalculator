@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title class="translate" data-translate-key="title">Calculation Sheet</title>
+    <link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.14/jspdf.plugin.autotable.min.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		<header class="layout-header">
+			<div><span class="logo-full">
+				<!--<img class="logo" src="https://images.prismic.io/bbri/0f1c879e-8d5e-4201-a0d2-2dbf3bd95d33_Buildwise_Horizontaal_noir_marge.png?auto=compress,format&amp;rect=0,0,2000,500&amp;w=740&amp;h=185" alt="BBRI logo"></span> -->
+			</div>
+			<!--<img class="tool-logo" src="https://images.prismic.io/bbri/6cb70e31-2f6b-4657-80b5-a512d17a71c1_heatload_logo.jpg?auto=compress,format" alt="Tool logo"> -->
+			<!-- img alt="" style="width: 150px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB3aWR0aD0iMTI3Ljg4NTY1bW0iCiAgIGhlaWdodD0iNDcuNjI1bW0iCiAgIHZpZXdCb3g9IjAgMCAxMjcuODg1NjUgNDcuNjI1IgogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmcxIgogICBpbmtzY2FwZTp2ZXJzaW9uPSIxLjMgKDBlMTUwZWQ2YzQsIDIwMjMtMDctMjEpIgogICBzb2RpcG9kaTpkb2NuYW1lPSJsb2dvVW1ldGFsLnN2ZyIKICAgeG1sbnM6aW5rc2NhcGU9Imh0dHA6Ly93d3cuaW5rc2NhcGUub3JnL25hbWVzcGFjZXMvaW5rc2NhcGUiCiAgIHhtbG5zOnNvZGlwb2RpPSJodHRwOi8vc29kaXBvZGkuc291cmNlZm9yZ2UubmV0L0RURC9zb2RpcG9kaS0wLmR0ZCIKICAgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHNvZGlwb2RpOm5hbWVkdmlldwogICAgIGlkPSJuYW1lZHZpZXcxIgogICAgIHBhZ2Vjb2xvcj0iI2ZmZmZmZiIKICAgICBib3JkZXJjb2xvcj0iIzAwMDAwMCIKICAgICBib3JkZXJvcGFjaXR5PSIwLjI1IgogICAgIGlua3NjYXBlOnNob3dwYWdlc2hhZG93PSIyIgogICAgIGlua3NjYXBlOnBhZ2VvcGFjaXR5PSIwLjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMCIKICAgICBpbmtzY2FwZTpkZXNrY29sb3I9IiNkMWQxZDEiCiAgICAgaW5rc2NhcGU6ZG9jdW1lbnQtdW5pdHM9Im1tIgogICAgIGlua3NjYXBlOnpvb209IjEuNDQ4NTI2OSIKICAgICBpbmtzY2FwZTpjeD0iMzcyLjc5MjUyIgogICAgIGlua3NjYXBlOmN5PSI2NS45MjkwNDciCiAgICAgaW5rc2NhcGU6d2luZG93LXdpZHRoPSIxOTIwIgogICAgIGlua3NjYXBlOndpbmRvdy1oZWlnaHQ9IjEwMDkiCiAgICAgaW5rc2NhcGU6d2luZG93LXg9Ii04IgogICAgIGlua3NjYXBlOndpbmRvdy15PSItOCIKICAgICBpbmtzY2FwZTp3aW5kb3ctbWF4aW1pemVkPSIxIgogICAgIGlua3NjYXBlOmN1cnJlbnQtbGF5ZXI9ImxheWVyMSIgLz4KICA8ZGVmcwogICAgIGlkPSJkZWZzMSI+CiAgICA8cGF0dGVybgogICAgICAgaW5rc2NhcGU6Y29sbGVjdD0iYWx3YXlzIgogICAgICAgeGxpbms6aHJlZj0iI3BhdHRlcm4xIgogICAgICAgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQiCiAgICAgICBpZD0icGF0dGVybjIiCiAgICAgICBwYXR0ZXJuVHJhbnNmb3JtPSJtYXRyaXgoMCwwLjUsLTAuNSwwLDQ3Mi4yNDcyNywyMC41NjU3MTIpIgogICAgICAgeD0iMCIKICAgICAgIHk9IjAiIC8+CiAgICA8cGF0dGVybgogICAgICAgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIKICAgICAgIHdpZHRoPSI1MC4zNTMxNjEiCiAgICAgICBoZWlnaHQ9IjEwMS4wMDAxNSIKICAgICAgIHBhdHRlcm5UcmFuc2Zvcm09InRyYW5zbGF0ZSg0Ny4xNDgxNDMsMjcuMjk4MTc5KSIKICAgICAgIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIgogICAgICAgaWQ9InBhdHRlcm4xIgogICAgICAgaW5rc2NhcGU6bGFiZWw9InBhdHRlcm4xIj4KICAgICAgPHBhdGgKICAgICAgICAgZD0iTSAwLjE3NjU4MDM3LDAuNTAwMDk5MTQgQSAyNSwyNSAwIDAgMSAyMi4xNzY1OCwzNy41MDAwOTkgbCAtMTcuOTk5OTk5NiwyNSBBIDI1LDI1IDAgMCAwIDI1LjE3NjU4LDEwMC41MDAxIGEgMjUsMjUgMCAwIDAgMjEsLTM4LjAwMDAwMSBsIC0xOCwtMjUgYSAyNSwyNSAwIDAgMSAyMiwtMzYuOTk5OTk5ODYiCiAgICAgICAgIHN0cm9rZT0iIzAwMDAwMCIKICAgICAgICAgZmlsbD0ibm9uZSIKICAgICAgICAgaWQ9InBhdGgxIiAvPgogICAgPC9wYXR0ZXJuPgogICAgPHJlY3QKICAgICAgIHg9IjI4LjUyNzgwMiIKICAgICAgIHk9IjE5OC45OTg4MSIKICAgICAgIHdpZHRoPSI0ODAuMTAyMDIiCiAgICAgICBoZWlnaHQ9IjE4NC4zODcwMSIKICAgICAgIGlkPSJyZWN0MTAiIC8+CiAgPC9kZWZzPgogIDxnCiAgICAgaW5rc2NhcGU6bGFiZWw9IkxheWVyIDEiCiAgICAgaW5rc2NhcGU6Z3JvdXBtb2RlPSJsYXllciIKICAgICBpZD0ibGF5ZXIxIgogICAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKC02OS44NTAwMDEsLTEwMi4xMjkxNykiPgogICAgPHBhdGgKICAgICAgIGNsYXNzPSJjbHMtMSIKICAgICAgIGQ9Im0gMTkzLjQzODgyLDExNy4zNDUzNiAtMzAuNDI5NzMsLTE1LjIxNjE5IHYgMTcuMzY0NiBjIDAsMCAwLDI1LjU4MjU3IDAsMjUuNTgyNTcgMCwyLjU4NDk4IDIuMDk1NSw0LjY3NzgzIDQuNjc3ODMsNC42Nzc4MyBoIDI1LjM3MDkgYyAyLjU4NDk4LDAgNC42Nzc4MywtMi4wOTU1IDQuNjc3ODMsLTQuNjc3ODMgdiAtMjAuNzc3NzMgYyAwLC0yLjk0NDgyIC0xLjY2NDIzLC01LjYzODI3IC00LjI5NjgzLC02Ljk1MzI1IHoiCiAgICAgICBpZD0icGF0aDkiCiAgICAgICBzdHlsZT0iZmlsbDojMGM4OGI0O3N0cm9rZS13aWR0aDowcHgiIC8+CiAgICA8ZwogICAgICAgaWQ9ImcyIgogICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMC4yNjQ1ODMzMywwLDAsMC4yNjQ1ODMzMywzMi45NTkzNDQsMTAzLjIzMzc1KSI+CiAgICAgIDxyZWN0CiAgICAgICAgIHN0eWxlPSJmaWxsOiNmZmZmZmY7ZmlsbC1vcGFjaXR5OjE7c3Ryb2tlOm5vbmU7c3Ryb2tlLXdpZHRoOjE7c3Ryb2tlLW1pdGVybGltaXQ6Mi4zO3N0cm9rZS1kYXNoYXJyYXk6bm9uZSIKICAgICAgICAgaWQ9InJlY3QyLTciCiAgICAgICAgIHdpZHRoPSI0OC43MDg0ODgiCiAgICAgICAgIGhlaWdodD0iMTIzLjk4NTI0IgogICAgICAgICB4PSI1MjMiCiAgICAgICAgIHk9IjQwIiAvPgogICAgICA8cmVjdAogICAgICAgICBzdHlsZT0iZmlsbDp1cmwoI3BhdHRlcm4yKTtmaWxsLW9wYWNpdHk6MTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6Mi4xO3N0cm9rZS1taXRlcmxpbWl0OjIuMztzdHJva2UtZGFzaGFycmF5Om5vbmUiCiAgICAgICAgIGlkPSJyZWN0MiIKICAgICAgICAgd2lkdGg9IjQ4LjcwODQ4OCIKICAgICAgICAgaGVpZ2h0PSIxMjMuOTg1MjQiCiAgICAgICAgIHg9IjUyMy41IgogICAgICAgICB5PSI0MC41IiAvPgogICAgPC9nPgogICAgPHBhdGgKICAgICAgIHN0eWxlPSJmaWxsOm5vbmU7ZmlsbC1vcGFjaXR5OjE7c3Ryb2tlOiNmMjc4MTM7c3Ryb2tlLXdpZHRoOjEuMTQyMjE7c3Ryb2tlLW1pdGVybGltaXQ6Mi4zO3N0cm9rZS1kYXNoYXJyYXk6bm9uZTtzdHJva2Utb3BhY2l0eToxIgogICAgICAgZD0ibSAxNzEuNzQ0NjMsMTIzLjI4ODUxIGMgMCw4LjY4ODgyIDAuMDEwNiwxMS43Njk4MSAwLjAxMDYsMTEuNzY5ODEgbCAxMi4yNTg2NCwwLjA1NDIgLTAuMDcwOCwtMTEuNzU4NTkiCiAgICAgICBpZD0icGF0aDEwIgogICAgICAgc29kaXBvZGk6bm9kZXR5cGVzPSJjY2NjIiAvPgogICAgPHRleHQKICAgICAgIHhtbDpzcGFjZT0icHJlc2VydmUiCiAgICAgICBpZD0idGV4dDEwIgogICAgICAgc3R5bGU9ImZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LXN0cmV0Y2g6bm9ybWFsO2ZvbnQtc2l6ZTo5NnB4O2ZvbnQtZmFtaWx5OkR1YmFpOy1pbmtzY2FwZS1mb250LXNwZWNpZmljYXRpb246J0R1YmFpLCBCb2xkJztmb250LXZhcmlhbnQtbGlnYXR1cmVzOm5vcm1hbDtmb250LXZhcmlhbnQtY2Fwczpub3JtYWw7Zm9udC12YXJpYW50LW51bWVyaWM6bm9ybWFsO2ZvbnQtdmFyaWFudC1lYXN0LWFzaWFuOm5vcm1hbDt3aGl0ZS1zcGFjZTpwcmU7c2hhcGUtaW5zaWRlOnVybCgjcmVjdDEwKTtkaXNwbGF5OmlubGluZTtmaWxsOm5vbmU7ZmlsbC1vcGFjaXR5OjE7c3Ryb2tlOiNmMjc4MTM7c3Ryb2tlLXdpZHRoOjQuMzE3O3N0cm9rZS1taXRlcmxpbWl0OjIuMztzdHJva2UtZGFzaGFycmF5Om5vbmU7c3Ryb2tlLW9wYWNpdHk6MSIKICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMjY0NTgzMzMsMCwwLDAuMjY0NTgzMzMsNjAuODg4ODcsNjIuOTU2Mjg1KSI+PHRzcGFuCiAgICAgICAgIHg9IjI4LjUyNzM0NCIKICAgICAgICAgeT0iMjg1LjQ3MDQ3IgogICAgICAgICBpZD0idHNwYW4zIj48dHNwYW4KICAgICAgICAgICBzdHlsZT0iZm9udC13ZWlnaHQ6NjAwO2ZvbnQtZmFtaWx5OidTZWdvZSBVSSc7LWlua3NjYXBlLWZvbnQtc3BlY2lmaWNhdGlvbjonU2Vnb2UgVUksIFNlbWktQm9sZCc7ZmlsbDojMDAwMDAwO3N0cm9rZTojMDAwMDAwIgogICAgICAgICAgIGlkPSJ0c3BhbjEiPlVNZXRhbDwvdHNwYW4+PC90c3Bhbj48L3RleHQ+CiAgPC9nPgo8L3N2Zz4K" /> -->
+
+			<div class="right-header">
+			</div>
+		</header>
+
+		<h1 class="translate" data-translate-key="title_app"></h1>
+		<div id="intro">
+			<p class="translate" data-translate-key="intro"></p>
+		</div>
+
+		<div class="dynamic-content">
+		
+		</div>
+   
+		<div class="button-container">
+			<!--<button class="btn export-pdf translate" data-translate-key="export_pdf">Export to PDF</button> -->	
+			<button class="btn export-csv translate" data-translate-key="export_csv">Export to CSV</button>
+			<button class="btn copy-clipboard translate" data-translate-key="copy_to_clipboard">Copy to Clipboard</button>
+		</div>
+   
+	</div>
+	<script src="createFields.js"></script>
+	<script>
+		createLanguageSwitcher('.right-header',['FR','NL'])
+		createNoteSection('.dynamic-content');
+		createWallsSection('.dynamic-content');
+		createRoofsSection('.dynamic-content');
+		createSoilsSection('.dynamic-content');
+		
+	</script>
+
+    <script src="data.js"></script>
+	<script src="computeFunctions.js"></script>
+	<script src="translations.js"></script>
+	<script src="manageTables.js"></script>
+	<script src="exportFunctions.js"></script>
+	
+    <script>
+	
+	document.getElementById('language-switcher').addEventListener('change', () => {
+		translatePage();
+	});
+	// Initialize the page
+	translatePage();
+	
+	</script>
+	
+
+</body>
+</html>

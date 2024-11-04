@@ -1,0 +1,171 @@
+body {
+	font-family: Arial, sans-serif;
+	background-color: #eee;
+}
+
+table{width:100%;}
+
+thead th {
+    background-color: #f2f2f2;
+    color: #333;
+    font-weight: bold;
+    padding: 3px 3px;
+    border: 1px solid #ddd;
+}
+
+/* Table body row styling */
+tbody tr {
+    border-bottom: 1px solid #ddd;
+}
+
+tbody tr:nth-of-type(even) {
+    background-color: #f9f9f9;
+}
+
+/* Table cell styling */
+tbody td {
+    padding: 3px 3px;
+    border: 1px solid #ddd;
+	
+}
+
+/* Hover effect for table rows */
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+
+.note {
+	background-color: #0087b7;
+	color: white;
+	padding: 5px;
+}
+.btn {
+padding: 10px;
+font-weight: bold;
+border-radius: 5px;
+border: none;
+cursor: pointer;
+background-color: lightgrey
+}
+
+.btn.add-row {
+    background-color: #ec6607; /* Green background */
+    color: white;
+}
+
+
+
+.container
+{
+max-width:1400px;
+  margin: 0 auto;
+}
+
+
+input[type=button], input[type=submit], select, input[type=number], input[type=text]{
+  padding: 3px 3px;
+  margin: 1px 1px;
+  background-color: #fff	;
+  border-radius: 4px;
+}
+
+
+
+  .layout-header
+{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  height: 64px;
+  box-shadow: 0 1px 3px #646464;
+  padding: 0 10px;
+  margin: 0px;
+}
+
+.layout-header .logo, .layout-header .tool-logo
+{
+  height: 50px;
+  max-height: 50px;
+}
+
+#languageSelect{
+width:50px;
+margin-right:20px;
+}
+
+
+.hstack{
+display: flex;
+  flex-direction: row;
+}
+
+
+
+@media screen and (min-width: 600px) {
+ 
+
+	
+input{width: auto;}
+
+input[type=number]{
+	width:60px;
+}
+
+.wallName{
+	width:100px;
+}
+
+.default-lambda-input, .u-value-output{
+	width:60px;
+}
+ 
+ }
+
+/* Responsive table styling */
+@media screen and (max-width: 600px) {
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+    }
+
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+    }
+
+    td {
+        border: none;
+        border-bottom: 1px solid #ddd;
+        position: relative;
+        padding-left: 50%; /* Increased padding to accommodate data-label */
+        text-align: left;
+        box-sizing: border-box; /* Ensure padding is included in the width calculation */
+    }
+
+    td:before {
+        content: attr(data-label-value);
+        position: relative;
+        left: 0;
+        width: 45%; /* Adjust width to ensure it doesn’t overlap with the content */
+        font-weight: bold;
+        white-space: nowrap;
+        box-sizing: border-box; /* Ensure padding is included in the width calculation */
+    }
+
+    input, select, button {
+        width: 100%; /* Make input, select, and button elements full-width */
+        box-sizing: border-box; /* Ensure padding is included in the width calculation */
+    }
+}
